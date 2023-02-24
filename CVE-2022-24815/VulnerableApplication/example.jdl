@@ -1,0 +1,4 @@
+entity Example {
+	id String
+    name String
+}

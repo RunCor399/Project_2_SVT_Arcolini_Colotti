@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20230221151937",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "example",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Example",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

@@ -70,7 +70,7 @@ public class MovieController {
             String fileName = file.getOriginalFilename();
             if (fileName != null) {
                 FileUtils.copyInputStreamToFile(file.getInputStream(), new File(imageFilePath + fileName));
-                movie.setImageFilePath(imageFilePath + fileName);
+                movie.setImageFilePath("upload/static/images/" + fileName);
             }
         }
 

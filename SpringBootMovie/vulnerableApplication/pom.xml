@@ -41,6 +41,8 @@
 			<scope>test</scope>
 		</dependency>
 
+
+		<!-- Management of file-related functions (e.g. org.apache.commons.io.FileUtils) -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-io</artifactId>
@@ -51,6 +53,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.3</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

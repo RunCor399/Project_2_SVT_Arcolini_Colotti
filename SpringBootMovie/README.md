@@ -1,44 +1,45 @@
 # Spring Boot Movie
-[`SpringBootMovie`](https://github.com/lkmc2/SpringBootMovie) is an open-source Spring Boot web application that enables users to browse movies, watch trailers, movie's details and keep updated to the latest movies releases.
+[`SpringBootMovie`](https://github.com/lkmc2/SpringBootMovie) is an **open-source Spring Boot web application** that enables users to browse movies, movie's details, watch trailers and keep updated to the latest movie releases.
+
 ![SpringBootMovie.png](./Images/SpringBootMovie.png)
 
-**SpringBootMovie** is currently not maintained ([latest commit](https://github.com/lkmc2/SpringBootMovie/commit/11444f560bcb4d0ac4f6909019e910b9cc6d8494): March 17, 2019) and it is affected by two CVE:
+Currently, it seems that **SpringBootMovie** is not maintained anymore ([latest commit](https://github.com/lkmc2/SpringBootMovie/commit/11444f560bcb4d0ac4f6909019e910b9cc6d8494): March 17th, 2019) and it is affected by two CVEs:
 
 - **CVE-2022-28588**: *in SpringBootMovie <=1.2 when adding movie names, malicious code can be stored because there are no filtering parameters, resulting in stored XSS.*
 - **CVE-2022-29001**: *in SpringBootMovie <=1.2, the uploaded file suffix parameter is not filtered, resulting in arbitrary file upload vulnerability.*
 
-In this document, both the CVEs will be considered and analyzed. A simplified vulnerable application will be created in order to play and test the vulnerabilities.
+In this document, both the CVEs will be considered and analyzed. Moreover, a simplified vulnerable application will be created in order to play and test the vulnerabilities.
 
 
 ## Content
-1. [This directory](#this-directory)
+1. [This repository](#this-repository)
 2. [TL;DR](#tldr)
 3. [The CVEs](#the-cves)
     1. [CVE-2022-28588](#cve-2022-28588)
         1. [Details](#details)
         2. [Stored XSS](#stored-xss)
     2. [CVE-2022-29001](#cve-2022-29001)
-        1. [Details](#details)
+        1. [Details](#details-1)
         2. [Arbitrary file upload](#arbitrary-file-upload)
 4. [The vulnerable application](#the-vulnerable-application)
-    1. [Analysis of the original application](#analysis-of-the-original-application)
-    2. [Analysis of the extracted code-sample](#analysis-of-the-extracted-code-sample)
+    1. [Installing original application](#installing-the-original-application)
+    2. [Details of the reproduced application](#details-of-the-reproduces-application)
 5. [Run the application](#run-the-application)
 6. [Run the exploit](#run-the-exploit)
 
 
-## This directory
-This directory contains the material related to **CVE-2022-28588** and **CVE-2022-29001**. All the material used in the research, development, testing and exploiting of the vulnerabilities, can be found here. In particular, the content of this repository is the following:
+## This repository
+This repository contains the material related to **CVE-2022-28588** and **CVE-2022-29001**. All the material used in the research, development, testing and exploiting of the vulnerabilities, can be found here. In particular, the content of this repository is the following:
 - `README.md`: this file. It contains the report in markdown format, with all the information regarding the CVEs, the vulnerable application and the reproduced exploits.
 - `Runnable`: it contains the runnable vulnerable application. The application can either start locally (as it is delivered as an executable `.jar`) or as a Docker container (in a already prepared and configured environment). Please refer to the [Run the application](#run-the-application) section for more information.
 - `VulnerableApplication`: it contains the source code of the vulnerable application. The application represents a simplified vulnerable version extracted from the [`SpringBootMovie`](https://github.com/lkmc2/SpringBootMovie) application. Please refer to the [The vulnerable application](#the-vulnerable-application) section for more information.
 - `Attacker`: it contains the python scripts used as Proof of Concept to exploit the CVE vulnerabilities. More details can be found in the section: [Run the exploit](#run-the-exploit).
-- `Images`: it contains images used in this file.
+- `Images`: it contains the images used in this file.
 
 
 ## TL;DR
 We are dealing with two vulnerabilities found in the `MovieAdminController.java` class, which exposes an endpoint to upload the information related to a new movie. In particular:
-- a [stored XSS](https://cwe.mitre.org/data/definitions/79.html): the controller does not properly sanitize the user inputs, that will be stored as is in the MySQL database and later rendered by Thymeleaf in the `.html` template containing, now, the malicious code injected;
+- a [stored XSS](https://cwe.mitre.org/data/definitions/79.html): the controller does not properly sanitize the user input that will be stored as is in the MySQL database and later rendered by the Thymeleaf engine in the `.html` template containing, now, the malicious code injected;
 - an [unrestricted upload of file](https://cwe.mitre.org/data/definitions/434.html): the controller does not properly check the uploaded image file extensions, resulting in an arbitrary file upload. 
 
 To run the vulnerable application, move to [Runnable](./Runnable/) and run the following command: 
@@ -46,7 +47,7 @@ To run the vulnerable application, move to [Runnable](./Runnable/) and run the f
 ./run-docker.sh
 ```
 
-This will start the application, listening on `localhost:8080`.
+This will start the application along with an Apache Tomcat web server listening on `localhost:8080`.
 
 > **NB**: remember to start the docker deamon. 
 
@@ -66,15 +67,16 @@ The CVE states that:
 > In SpringBootMovie <=1.2 when adding movie names, malicious code can be stored because there are no filtering parameters, resulting in stored XSS.
 
 #### Details
-The CVE refers to a stored XSS that appears in the `MovieAdminController.java` class of the **SpringBootMovie** application: an open-source Spring Boot application which exposes the `/admin/movie/save` endpoint and which does not properly sanitize user's inputs. 
+The CVE refers to a stored XSS that appears in the `MovieAdminController.java` class of the **SpringBootMovie** application: an open-source Spring Boot web application which exposes the `/admin/movie/save` endpoint and which does not properly sanitize the user input. 
 
 Specifically, the application allows admins to inserts new movies information in the database. In order to do so, after the application has started, a page form can be found at `http://localhost:8080/admin` page:
+
 ![inputForm.jpg](./Images/inputForm.jpg)
 
 In particular, the form allows admins to insert the following information: 
 - `name`;
 - `title`;
-- `imageFile`: the art of the film which will be displayed (**NB**: this is also vulnerable, and the [issue](https://github.com/lkmc2/SpringBootMovie/issues/4) is still opened on GitHub);
+- `imageFile`: the art of the film which will be displayed (**NB**: this refers to [CVE-2022-29001](#cve-2022-29001));
 - `hot`: used to identify trending movies (kind of a *favorite* toggle);
 - `content`: the textual description of the movie.
 
@@ -121,12 +123,14 @@ The form logic is embedded in the Thymeleaf `addMovie.html` template and a `<scr
 ```
 
 The `POST` request analyzed with the developer tools is the following: 
+
 ![postHeaders.jpg](./Images/postHeaders.jpg)
+
 ![postPayload.jpg](./Images/postPayload.jpg)
 
 In this case, the payload contains the `name` attribute which has been defined as a malicious JavaScript code `<script>alert(1)</script>`. 
 
-The request gets processed server-side by the `MovieAdminController.java`, which is a `RestController` that managed requests for `/admin/movie`:
+The request gets processed server-side by the `MovieAdminController.java`, which is a `RestController` that manages requests for the `/admin/movie` endpoint:
 ```java
 @RestController
 @RequestMapping("admin/movie")
@@ -178,15 +182,19 @@ resultMap.put("success", success);
 return resultMap;
 ```
 
-However, the user's input **is never properly sanitized** and the malicious injected JavaScript code is directly inserted in the database and will be rendered by the Thymeleaf templated as a JavaScript code.
+However, the user's input **is never properly sanitized** and the malicious injected JavaScript code is directly inserted in the database and will be rendered by the Thymeleaf template engine as a JavaScript code.
 
 The movie, after the injection, will be displayed correctly: 
+
 ![movieDetail.jpg](./Images/filmDetails.jpg)
 
 But when the page is rendered, the malicious JavaScript code will be executed: 
-![alert.jpg](./Images/alert.jpg)
+<center>
+    <img src="./Images/alert.jpg" alt="example" width="30%"/>
+</center>
 
 Finally, the DOM of the page is the following (here reported only the movie related section, containing the injected code): 
+
 ![dom.jpg](./Images/dom.jpg)
 
 
@@ -201,20 +209,55 @@ Finally, the DOM of the page is the following (here reported only the movie rela
 
 ## The vulnerable application
 
+The original application vulnerabilities have been extracted and reproduced in a simplified and minimized version in order to facilitate testing and learning. 
 
-### Analysis of the extracted code-sample 
-The original application's vulnerability has been extracted and reproduced in a simplified web application in order to be tested. The new vulnerable application can be found in [vulnerableApplication](./vulnerableApplication/). 
+### Installing the original application
+
+In order to install and start the original application, you can follow the instruction presented on the GitHub repository of [SpringBootMovie](https://github.com/lkmc2/SpringBootMovie). However, the instructions are reproduced here in a more detailed fashion, in order to facilitate installation and configuration of the required assets.
+
+1. Clone the original repository by running the command:
+```bash
+git clone https://github.com/lkmc2/SpringBootMovie.git
+```
+2. Install the MySQL server following the [MySQL installation guide](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/). You will be asked to define the root password.
+3. Start the MySQL server by following the instructions in the previous point.
+3. Start the MySQL command line client application by running the following command in a shell. You will be prompted to insert the password you define in point 2:
+```bash
+mysql -u root -p
+```
+4. Create a new database by running the command:
+```bash
+CREATE DATABASE spring_boot_movie;
+```
+5. Connect to the empty database by running the command:
+```bash
+CONNECT spring_boot_movie;
+```
+5. Launch the `spring_boot_movie.sql` script (`src/main/resources`) by running the following command. This will execute the `.sql` file containing the initialization of the database, that will be populated with the necessary tables and data in order to run the application. Once the operation is done, we can exit the MySQL client:
+```bash
+SOURCE spring_boot_movie.sql;
+```
+6. Install the Redis server following the [Redis installation](https://redis.io/docs/getting-started/installation/) guide. You will be asked to define the password to access the server.
+7. Edit the `application.properties` file to include the previously defined password:
+```bash
+spring.redis.password=<defined_password>
+```
+8. Start the Redis server by running `redis-server` in a shell.
+9. It is now possible to visit `http://localhost:8080/login` in the browser by enter the username `admin` and the password `123456`.
+
+### Details of the reproduces application
+The new web application can be found in the [vulnerableApplication](./vulnerableApplication/) directory. 
 
 The technology stack is the following (please note that the stack is slightly different from the original one in order to simplify the set up of the application):
 - **Spring Boot** is the framework layer used to automatically configures application components based on classpath and other settings. 
-- **H2** is the in-memory database used.
+- **H2** is the in-memory database used. While the original application requires to set up a MySQL server and a Redis server, all the database information are now stored in a in-memory H2 database. 
 - **Spring Data JPA** is the framework used to interact with the H2 database.
 - **Thymeleaf** is the server-side template generator that manages the web HTML pages rendering.
 - **Bootstrap v5.3** is used to customize the CSS application properties.
 
-The application presents a simpler UI, with an index page containing two buttons:
+The application presents a simpler UI with respect to the original one, with an index page containing two buttons:
 - `List all movies` will render all the movies in the H2 database (and potentially leading to the execution of the stored XSS malicious code);
-- `Add new movie` will allow users to create a new movie. 
+- `Add new movie` will allow users to create a new movie and insert the information in the H2 database. 
 
 ![index.jpg](./Images/index.jpg)
 
@@ -223,14 +266,26 @@ A movie is defined having the following properties (again, slightly different fr
 - `director`;
 - `description`;
 - `overallRating`;
-- `publishDate`.
+- `publishDate`;
+- `imagePathFile`.
 
-![inputFormNew.jpg](./Images/inputFormNew.jpg)
+The form to input the movie-related information is the following.
 
-Server side, the vulnerable controller is `MovieController.java`, which reproduces the same vulnerable logic of the original component (without the upload of vulnerable file, which is, as previously stated, another [issue](https://github.com/lkmc2/SpringBootMovie/issues/4) opened in the application):
+![inputFormNew.png](./Images/inputFormNew.png)
+
+Server side, the vulnerable controller is `MovieController.java`, which reproduces the same vulnerable logic of the original component 
 ```java
 @PostMapping("/save")
-public Map<String, Object> addMovie(@RequestBody Movie movie) {
+public Map<String, Object> addMovie(Movie movie, @RequestParam("imageFile") MultipartFile file) throws IOException {
+
+    /* CVE-2022-29001: uploading file without proper sanitization */
+    if (file != null && !file.isEmpty()) {
+        String fileName = file.getOriginalFilename();
+        if (fileName != null) {
+            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(imageFilePath + fileName));
+            movie.setImageFilePath("upload/static/images/" + fileName);
+        }
+    }
 
     /* CVE-2022-28588: saving the movie without proper input sanitization */
     boolean success = movieService.save(movie);
@@ -241,7 +296,28 @@ public Map<String, Object> addMovie(@RequestBody Movie movie) {
 }
 ```
 
-> **NB**: `movieService` is an interface to the Spring Data JPA repository used to interact with the H2 database. In the original application, the `.save(movie)` method refers to a MySQL database operation. The use of H2 here has been adopted for simplicity reasons. 
+> **NB**: `movieService` is an interface to the Spring Data JPA repository used to interact with the H2 database. In the original application, the `.save(movie)` method refers to a MySQL database operation. As already stated, the use of H2 here has been adopted for simplicity reasons. 
+
+Two notes to take into considerations when comparing the reproduced vulnerable application to the original one. In particular, in the reproduced application:
+1. uploaded images are stored in `src/main/resources/upload/static/images` rather than `src/main/resources/static/images`. This is because the `static` folder is loaded into the `target` directory by the spring-boot plugin. If not explicitly configured, context-refresh is not performed and therefore uploaded files could not be found. This is an issue present in the original application. 
+2. movie information are displayed directly with the Thymeleaf template engine as **unescaped text**, i.e. `th:utext = "${movie.<property>}"`. This is done in order to reproduce in a simpler fashion the vulnerability in the original application, which uses instead `jQuery` to fetch and display data. Note that `<table>` allows an `url` property which is used by `jQuery` to reach the endpoint, retrieve data and fill the table itself. However, no escaping is automatically performed by the library. 
+```html
+<table id="dg" title="电影动态信息管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+        url="/admin/movieDetail/list" fit="true" toolbar="#tb">
+    <thead>
+        <tr>
+            <th field="cb" checkbox="true" align="center"></th>
+            <th field="id" width="30" align="center">编号</th>
+            <th field="movieName" width="100" align="center" formatter="formatMovieName">电影名称</th>
+            <th field="websiteName" width="200" align="center" formatter="formatWebsiteName">网站名称</th>
+            <th field="info" width="300" align="center">动态信息</th>
+            <th field="url" width="200" align="center">具体地址</th>
+            <th field="publishDate" width="90" align="center" formatter="formatTime">发布日期</th>
+        </tr>
+    </thead>
+</table>
+```
 
 ## Run the application
 Previous section described the logic of vulnerable application. To start the application, move to the [Runnable](./Runnable/) folder and launch the starting scripts.

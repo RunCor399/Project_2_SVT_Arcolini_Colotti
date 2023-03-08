@@ -23,6 +23,8 @@ public class VulnappApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		/* adding movies to the H2 database */
 		this.movieRepository.save(new Movie("Kill Bill: Vol. 1", "Quentin Tarantino", 7, new Date(), "After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.", "movieImages/KillBill1.png"));
 		this.movieRepository.save(new Movie("Kill Bill: Vol. 2", "Quentin Tarantino", 7, new Date(), "The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.", "movieImages/KillBill2.jpg"));
 		this.movieRepository.save(new Movie("Reservoir Dogs", "Quentin Tarantino", 8, new Date(), "When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant.", "movieImages/ReservoirDogs.png"));

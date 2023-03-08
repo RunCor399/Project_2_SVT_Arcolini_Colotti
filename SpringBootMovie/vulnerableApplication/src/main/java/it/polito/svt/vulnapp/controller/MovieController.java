@@ -21,6 +21,10 @@ import java.util.*;
 @RestController
 public class MovieController {
 
+    /**
+     * Date binder to customized date class
+     * @param binder the date inserted from the web form
+     */
     @InitBinder
     public void binder(WebDataBinder binder) {
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
@@ -45,6 +49,10 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    /**
+     * The list of all movies in the database
+     * @return movieList.html
+     */
     @GetMapping("/movies")
     public ModelAndView getMovies() {
 
@@ -56,12 +64,23 @@ public class MovieController {
         return mv;
     }
 
+    /**
+     * Form to add a new movie
+     * @return addMovie.html
+     */
     @GetMapping("/new-movie")
     public ModelAndView getNewMovieForm() {
         ModelAndView mv = new ModelAndView("movieForm");
         return mv;
     }
 
+    /**
+     * Endpoint to save a new file in the database
+     * @param movie the movie information inserted by the user
+     * @param file the MultipartFile data inserted by the user
+     * @return Map<"success": true> in case of success Map<"success": false> in case of failure
+     * @throws IOException
+     */
     @PostMapping("/save")
     public Map<String, Object> addMovie(Movie movie, @RequestParam("imageFile") MultipartFile file) throws IOException {
 

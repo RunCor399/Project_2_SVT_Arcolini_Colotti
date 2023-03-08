@@ -29,22 +29,22 @@ class Logger:
         Contact: davide.arcolini@studenti.polito.it 
         '''
         
-        
     def print_banner(self) -> None:
         print(self.header)
+        return self
         
     def log(self, message: str) -> None:
         print(Fore.CYAN + '[+] ' + Fore.RESET + message)
-        return
+        return self
     
     def success(self, message: str) -> None:
-        print(Fore.GREEN + '[!] ' + Fore.RESET + message)
-        return
+        print(Fore.GREEN + '[!] ' + message)
+        return self
     
     def warning(self, message: str) -> None:
-        print(Fore.RED + '[!] ' + Fore.RESET + message)
-        return
+        print(Fore.RED + '[!] ' + message)
+        return self
     
     def request(self, verb: str, endpoint: str) -> None:
         print('    ' + Fore.CYAN + f'{verb} {endpoint}')
-        return
+        return self

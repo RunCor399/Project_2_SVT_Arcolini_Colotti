@@ -12,7 +12,7 @@
 	<artifactId>vulnapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>vulnapp</name>
-	<description>Vulnerable application for CVE-2022-28588</description>
+	<description>Vulnerable application for CVE-2022-28588 and CVE-2022-29001</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

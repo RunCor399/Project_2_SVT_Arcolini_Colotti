@@ -7,6 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 
+    /**
+     * Home page of the application
+     * @return index.html
+     */
     @GetMapping("/")
     public ModelAndView getIndex() {
         ModelAndView mv = new ModelAndView("index");

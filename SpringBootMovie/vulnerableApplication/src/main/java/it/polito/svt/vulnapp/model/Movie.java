@@ -12,27 +12,28 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String title;
-    private String director;
-    private Integer overallRating;
+    private String title;               /* title property of the movie */
+    private String director;            /* director property of the movie */
+    private Integer overallRating;      /* overallRating property of the movie */
+    private Date publishDate;           /* publishDate property of the movie */
+    private String description;         /* description property of the movie */
+    private String imageFilePath;       /* imageFilePath property of the movie */
 
-    private Date publishDate;
-
-    private String description;
-
-    private String imageFilePath;
-
+    /**
+     * Default constructor
+     */
     public Movie() {
     }
 
-    public Movie(String title, String director, Integer overallRating, Date publishDate, String description) {
-        this.title = title;
-        this.director = director;
-        this.overallRating = overallRating;
-        this.publishDate = publishDate;
-        this.description = description;
-    }
-
+    /**
+     * Complete constructor
+     * @param title title property of the movie
+     * @param director director property of the movie
+     * @param overallRating overallRating property of the movie
+     * @param publishDate publishDate property of the movie
+     * @param description description property of the movie
+     * @param imageFilePath imageFilePath property of the movie
+     */
     public Movie(String title, String director, Integer overallRating, Date publishDate, String description, String imageFilePath) {
         this.title = title;
         this.director = director;

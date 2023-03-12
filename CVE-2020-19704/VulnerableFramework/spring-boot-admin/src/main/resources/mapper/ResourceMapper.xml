@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dmc.mapper.ResourceMapper">
+
+
+    <insert id="save" parameterType="com.dmc.model.Resource">
+        INSERT INTO dmc.resource (ID, NAME, REMARK, SEQ, URL, method, PID, type)
+        VALUES (#{id}, #{name}, #{remark},
+                #{seq}, #{url}, #{method}, #{pid}, #{type})
+    </insert>
+    <update id="update" parameterType="com.dmc.model.Resource">
+        UPDATE dmc.resource
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="seq != null">
+                seq = #{seq},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="method != null">
+                method = #{method},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            pid = #{pid},
+        </set>
+
+        WHERE ID = #{id}
+    </update>
+
+
+    <delete id="deleteById">
+        DELETE FROM dmc.resource
+        WHERE ID = #{id}
+    </delete>
+
+    <select id="getResourceList" resultType="com.dmc.model.Resource">
+
+        SELECT r.*
+        FROM dmc.resource r
+        <where>
+            <if test="userId != null">
+                and exists(select 1 from dmc.role_resource rr INNER JOIN dmc.role role ON rr.ROLE_ID = role.ID
+                INNER JOIN dmc.user_role ur ON ur.ROLE_ID = role.ID INNER JOIN user u ON u.ID = ur.USER_ID
+                WHERE u.ID = #{userId} AND rr.RESOURCE_ID = r.ID)
+            </if>
+            <if test="roleId != null">
+                and exists(select 1 from dmc.role_resource rr INNER JOIN role role ON rr.ROLE_ID = role.ID
+                WHERE rr.RESOURCE_ID = r.ID and role.id = #{roleId})
+            </if>
+            <if test="type != null">
+                and r.type = #{type}
+            </if>
+        </where>
+
+        order by r.seq
+    </select>
+    <select id="getById" resultType="com.dmc.model.Resource">
+        SELECT
+            r.*,
+            (SELECT p.name
+             FROM dmc.resource p
+             WHERE r.PID = p.ID) pname
+        FROM
+            dmc.resource r
+        WHERE r.ID = #{id}
+    </select>
+
+    <select id="getRoleResourceIds" resultType="java.lang.Long">
+        SELECT r.id
+        FROM dmc.resource r INNER JOIN dmc.role_resource rr ON r.ID = rr.RESOURCE_ID
+        WHERE rr.ROLE_ID = #{roleId}
+    </select>
+
+    <select id="getRoleResourceNames" resultType="java.lang.String">
+        SELECT r.name
+        FROM dmc.resource r INNER JOIN dmc.role_resource rr ON r.ID = rr.RESOURCE_ID
+        WHERE rr.ROLE_ID = #{roleId}
+    </select>
+</mapper>

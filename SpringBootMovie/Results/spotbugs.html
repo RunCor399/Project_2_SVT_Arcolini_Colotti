@@ -1,0 +1,1218 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+		</style>
+   </head>
+   <body>
+      <h1>SpotBugs Report</h1>
+      <p>Produced using <a href="https://spotbugs.github.io">SpotBugs</a>4.4.2.</p>
+      <p>Project: 
+			SpringBootMovie[spring-boot-movie]</p>
+      <h2>Metrics</h2>
+      <p>783 lines of code analyzed,
+	in 42 classes, 
+	in 11 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right">3</td>
+            <td align="right">3.83</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right">9</td>
+            <td align="right">11.49</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Low Priority Warnings</td>
+            <td align="right">40</td>
+            <td align="right">51.09</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>52</b>
+            </td>
+            <td align="right">
+               <b>66.41</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Summary</h2>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+            </td>
+            <td align="right">6</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+            </td>
+            <td align="right">6</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+            </td>
+            <td align="right">2</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <a href="#Warnings_SECURITY">Security Warnings</a>
+            </td>
+            <td align="right">37</td>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
+            </td>
+            <td align="right">1</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>52</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>Warnings</h1>
+      <p>Click on each warning link to see a full description of the issue, and
+	    details of how to resolve it.</p>
+      <h2>
+         <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.FriendlyLink is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file FriendlyLink.java,
+					
+						lines 11
+						    to 19<br/>In class com.lin.model.FriendlyLink<br/>At FriendlyLink.java:[lines 11-19]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.Manager is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file Manager.java,
+					
+						lines 10
+						    to 16<br/>In class com.lin.model.Manager<br/>At Manager.java:[lines 10-16]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.Movie is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file Movie.java,
+					
+						lines 13
+						    to 31<br/>In class com.lin.model.Movie<br/>At Movie.java:[lines 13-31]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.MovieDetail is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file MovieDetail.java,
+					
+						lines 9
+						    to 26<br/>In class com.lin.model.MovieDetail<br/>At MovieDetail.java:[lines 9-26]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.Website is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file Website.java,
+					
+						lines 10
+						    to 16<br/>In class com.lin.model.Website<br/>At Website.java:[lines 10-16]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.model.vo.MovieDetailVo is Serializable; consider declaring a serialVersionUID<br/>
+                  <br/>
+                  <br/>In file MovieDetailVo.java,
+					
+						lines 12
+						    to 22<br/>In class com.lin.model.vo.MovieDetailVo<br/>At MovieDetailVo.java:[lines 12-22]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.Movie.getPublishDate() may expose internal representation by returning Movie.publishDate<br/>
+                  <br/>
+                  <br/>In file Movie.java Movie.java,
+					
+						line 28 28<br/>In class com.lin.model.Movie<br/>In method com.lin.model.Movie.getPublishDate()<br/>Field com.lin.model.Movie.publishDate<br/>At Movie.java:[line 28]<br/>At Movie.java:[line 28]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.MovieDetail.getPublishDate() may expose internal representation by returning MovieDetail.publishDate<br/>
+                  <br/>
+                  <br/>In file MovieDetail.java MovieDetail.java,
+					
+						line 26 26<br/>In class com.lin.model.MovieDetail<br/>In method com.lin.model.MovieDetail.getPublishDate()<br/>Field com.lin.model.MovieDetail.publishDate<br/>At MovieDetail.java:[line 26]<br/>At MovieDetail.java:[line 26]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.vo.MovieDetailVo.getPublishDate() may expose internal representation by returning MovieDetailVo.publishDate<br/>
+                  <br/>
+                  <br/>In file MovieDetailVo.java MovieDetailVo.java,
+					
+						line 22 22<br/>In class com.lin.model.vo.MovieDetailVo<br/>In method com.lin.model.vo.MovieDetailVo.getPublishDate()<br/>Field com.lin.model.vo.MovieDetailVo.publishDate<br/>At MovieDetailVo.java:[line 22]<br/>At MovieDetailVo.java:[line 22]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.Movie.setPublishDate(Date) may expose internal representation by storing an externally mutable object into Movie.publishDate<br/>
+                  <br/>
+                  <br/>In file Movie.java Movie.java,
+					
+						line 13 13<br/>In class com.lin.model.Movie<br/>In method com.lin.model.Movie.setPublishDate(Date)<br/>Field com.lin.model.Movie.publishDate<br/>Local variable named publishDate<br/>At Movie.java:[line 13]<br/>At Movie.java:[line 13]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.MovieDetail.setPublishDate(Date) may expose internal representation by storing an externally mutable object into MovieDetail.publishDate<br/>
+                  <br/>
+                  <br/>In file MovieDetail.java MovieDetail.java,
+					
+						line 9 9<br/>In class com.lin.model.MovieDetail<br/>In method com.lin.model.MovieDetail.setPublishDate(Date)<br/>Field com.lin.model.MovieDetail.publishDate<br/>Local variable named publishDate<br/>At MovieDetail.java:[line 9]<br/>At MovieDetail.java:[line 9]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>com.lin.model.vo.MovieDetailVo.setPublishDate(Date) may expose internal representation by storing an externally mutable object into MovieDetailVo.publishDate<br/>
+                  <br/>
+                  <br/>In file MovieDetailVo.java MovieDetailVo.java,
+					
+						line 12 12<br/>In class com.lin.model.vo.MovieDetailVo<br/>In method com.lin.model.vo.MovieDetailVo.setPublishDate(Date)<br/>Field com.lin.model.vo.MovieDetailVo.publishDate<br/>Local variable named publishDate<br/>At MovieDetailVo.java:[line 12]<br/>At MovieDetailVo.java:[line 12]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_PERFORMANCE">Performance Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#IIO_INEFFICIENT_LAST_INDEX_OF">Inefficient use of String.lastIndexOf(String)</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController.ckeditorUpload(MultipartFile, String) uses String.lastIndexOf(String) instead of String.lastIndexOf(int)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						line 170<br/>In class com.lin.controller.admin.MovieAdminController<br/>com.lin.controller.admin.MovieAdminController.ckeditorUpload(MultipartFile, String)<br/>Called method String.lastIndexOf(String)<br/>At MovieAdminController.java:[line 170]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#IIO_INEFFICIENT_LAST_INDEX_OF">Inefficient use of String.lastIndexOf(String)</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController.save(Movie, MultipartFile, HttpServletRequest) uses String.lastIndexOf(String) instead of String.lastIndexOf(int)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						line 80<br/>In class com.lin.controller.admin.MovieAdminController<br/>com.lin.controller.admin.MovieAdminController.save(Movie, MultipartFile, HttpServletRequest)<br/>Called method String.lastIndexOf(String)<br/>At MovieAdminController.java:[line 80]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_SECURITY">Security Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_CSRF_PROTECTION_DISABLED">Spring CSRF protection disabled</a>
+            </td>
+            <td width="10%" valign="top">High</td>
+            <td width="70%">
+               <p>Disabling Spring Security's CSRF protection is unsafe for standard web applications<br/>
+                  <br/>
+                  <br/>In file WebSecurityConfig.java,
+					
+						line 21<br/>In class com.lin.config.WebSecurityConfig<br/>In method com.lin.config.WebSecurityConfig.configure(HttpSecurity)<br/>At WebSecurityConfig.java:[line 21]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING">Spring CSRF unrestricted RequestMapping</a>
+            </td>
+            <td width="10%" valign="top">High</td>
+            <td width="70%">
+               <p>Unrestricted Spring's RequestMapping makes the method vulnerable to CSRF attacks<br/>
+                  <br/>
+                  <br/>In file MovieController.java,
+					
+						lines 41
+						    to 64<br/>In class com.lin.controller.MovieController<br/>In method com.lin.controller.MovieController.search(Movie, BindingResult)<br/>At MovieController.java:[lines 41-64]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING">Spring CSRF unrestricted RequestMapping</a>
+            </td>
+            <td width="10%" valign="top">High</td>
+            <td width="70%">
+               <p>Unrestricted Spring's RequestMapping makes the method vulnerable to CSRF attacks<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 168
+						    to 178<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.ckeditorUpload(MultipartFile, String)<br/>At MovieAdminController.java:[lines 168-178]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#HARD_CODE_PASSWORD">Hard coded password</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>Hard coded password found<br/>
+                  <br/>
+                  <br/>In file WebSecurityConfig.java,
+					
+						line 47<br/>In class com.lin.config.WebSecurityConfig<br/>In method com.lin.config.WebSecurityConfig.configure(AuthenticationManagerBuilder)<br/>At WebSecurityConfig.java:[line 47]<br/>Sink method org/springframework/security/config/annotation/authentication/configurers/provisioning/UserDetailsManagerConfigurer$UserDetailsBuilder.password(Ljava/lang/String;)Lorg/springframework/security/config/annotation/authentication/configurers/provisioning/UserDetailsManagerConfigurer$UserDetailsBuilder;<br/>Sink parameter 0</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#PATH_TRAVERSAL_IN">Potential Path Traversal (file read)</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>This API (java/io/File.&lt;init&gt;(Ljava/lang/String;)V) reads a file whose location might be specified by user input<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java MovieAdminController.java MovieAdminController.java MovieAdminController.java,
+					
+						line 172 170 171 172<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.ckeditorUpload(MultipartFile, String)<br/>At MovieAdminController.java:[line 172]<br/>Sink method java/io/File.&lt;init&gt;(Ljava/lang/String;)V<br/>Sink parameter 0<br/>Unknown source org/springframework/web/multipart/MultipartFile.getOriginalFilename()Ljava/lang/String;<br/>Unknown source com/lin/controller/admin/MovieAdminController.imageFilePath<br/>Unknown source java/text/SimpleDateFormat.format(Ljava/util/Date;)Ljava/lang/String;<br/>Unknown source com/lin/utils/DateUtils.getCurrentDateStr()Ljava/lang/String;<br/>At MovieAdminController.java:[line 170]<br/>At MovieAdminController.java:[line 171]<br/>At MovieAdminController.java:[line 172]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#PATH_TRAVERSAL_IN">Potential Path Traversal (file read)</a>
+            </td>
+            <td width="10%" valign="top">Medium</td>
+            <td width="70%">
+               <p>This API (java/io/File.&lt;init&gt;(Ljava/lang/String;)V) reads a file whose location might be specified by user input<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java MovieAdminController.java MovieAdminController.java MovieAdminController.java,
+					
+						line 83 80 81 83<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.save(Movie, MultipartFile, HttpServletRequest)<br/>At MovieAdminController.java:[line 83]<br/>Sink method java/io/File.&lt;init&gt;(Ljava/lang/String;)V<br/>Sink parameter 0<br/>Unknown source org/springframework/web/multipart/MultipartFile.getOriginalFilename()Ljava/lang/String;<br/>Unknown source com/lin/controller/admin/MovieAdminController.imageFilePath<br/>Unknown source java/text/SimpleDateFormat.format(Ljava/util/Date;)Ljava/lang/String;<br/>Unknown source com/lin/utils/DateUtils.getCurrentDateStr()Ljava/lang/String;<br/>At MovieAdminController.java:[line 80]<br/>At MovieAdminController.java:[line 81]<br/>At MovieAdminController.java:[line 83]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.IndexController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexController.java,
+					
+						lines 33
+						    to 37<br/>In class com.lin.controller.IndexController<br/>In method com.lin.controller.IndexController.aboutMe()<br/>At IndexController.java:[lines 33-37]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.IndexController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexController.java,
+					
+						lines 20
+						    to 24<br/>In class com.lin.controller.IndexController<br/>In method com.lin.controller.IndexController.login()<br/>At IndexController.java:[lines 20-24]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.IndexController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexController.java,
+					
+						line 55<br/>In class com.lin.controller.IndexController<br/>In method com.lin.controller.IndexController.toAdmin()<br/>At IndexController.java:[line 55]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.IndexController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexController.java,
+					
+						line 46<br/>In class com.lin.controller.IndexController<br/>In method com.lin.controller.IndexController.toLogin()<br/>At IndexController.java:[line 46]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.MovieController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieController.java,
+					
+						lines 75
+						    to 85<br/>In class com.lin.controller.MovieController<br/>In method com.lin.controller.MovieController.list(Integer)<br/>At MovieController.java:[lines 75-85]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.MovieController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieController.java,
+					
+						lines 41
+						    to 64<br/>In class com.lin.controller.MovieController<br/>In method com.lin.controller.MovieController.search(Movie, BindingResult)<br/>At MovieController.java:[lines 41-64]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.MovieController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieController.java,
+					
+						lines 96
+						    to 106<br/>In class com.lin.controller.MovieController<br/>In method com.lin.controller.MovieController.view(Integer)<br/>At MovieController.java:[lines 96-106]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.MovieDetailController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieDetailController.java,
+					
+						lines 34
+						    to 44<br/>In class com.lin.controller.MovieDetailController<br/>In method com.lin.controller.MovieDetailController.list(Integer)<br/>At MovieDetailController.java:[lines 34-44]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.WebsiteController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file WebsiteController.java,
+					
+						lines 34
+						    to 44<br/>In class com.lin.controller.WebsiteController<br/>In method com.lin.controller.WebsiteController.list(Integer)<br/>At WebsiteController.java:[lines 34-44]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.FriendlyLinkAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file FriendlyLinkAdminController.java,
+					
+						lines 78
+						    to 97<br/>In class com.lin.controller.admin.FriendlyLinkAdminController<br/>In method com.lin.controller.admin.FriendlyLinkAdminController.delete(String, HttpServletRequest)<br/>At FriendlyLinkAdminController.java:[lines 78-97]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.FriendlyLinkAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file FriendlyLinkAdminController.java,
+					
+						lines 43
+						    to 50<br/>In class com.lin.controller.admin.FriendlyLinkAdminController<br/>In method com.lin.controller.admin.FriendlyLinkAdminController.queryMovieDetail(FriendlyLink, Integer, Integer)<br/>At FriendlyLinkAdminController.java:[lines 43-50]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.FriendlyLinkAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file FriendlyLinkAdminController.java,
+					
+						lines 62
+						    to 68<br/>In class com.lin.controller.admin.FriendlyLinkAdminController<br/>In method com.lin.controller.admin.FriendlyLinkAdminController.save(FriendlyLink, HttpServletRequest)<br/>At FriendlyLinkAdminController.java:[lines 62-68]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 21<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.addMovie()<br/>At IndexAdminController.java:[line 21]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 30<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.detailManage()<br/>At IndexAdminController.java:[line 30]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 66<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.linkManage()<br/>At IndexAdminController.java:[line 66]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 48<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.modifyMovie()<br/>At IndexAdminController.java:[line 48]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 39<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.movieManage()<br/>At IndexAdminController.java:[line 39]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.IndexAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file IndexAdminController.java,
+					
+						line 57<br/>In class com.lin.controller.admin.IndexAdminController<br/>In method com.lin.controller.admin.IndexAdminController.websiteManage()<br/>At IndexAdminController.java:[line 57]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 168
+						    to 178<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.ckeditorUpload(MultipartFile, String)<br/>At MovieAdminController.java:[lines 168-178]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 153
+						    to 156<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.comboList(String)<br/>At MovieAdminController.java:[lines 153-156]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 108
+						    to 133<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.delete(String, HttpServletRequest)<br/>At MovieAdminController.java:[lines 108-133]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						line 143<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.findById(Integer)<br/>At MovieAdminController.java:[line 143]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 54
+						    to 61<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.queryMovie(Movie, Integer, Integer)<br/>At MovieAdminController.java:[lines 54-61]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieAdminController.java,
+					
+						lines 75
+						    to 98<br/>In class com.lin.controller.admin.MovieAdminController<br/>In method com.lin.controller.admin.MovieAdminController.save(Movie, MultipartFile, HttpServletRequest)<br/>At MovieAdminController.java:[lines 75-98]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieDetailAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieDetailAdminController.java,
+					
+						lines 82
+						    to 99<br/>In class com.lin.controller.admin.MovieDetailAdminController<br/>In method com.lin.controller.admin.MovieDetailAdminController.delete(String, HttpServletRequest)<br/>At MovieDetailAdminController.java:[lines 82-99]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieDetailAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieDetailAdminController.java,
+					
+						lines 45
+						    to 52<br/>In class com.lin.controller.admin.MovieDetailAdminController<br/>In method com.lin.controller.admin.MovieDetailAdminController.queryMovieDetail(MovieDetail, Integer, Integer)<br/>At MovieDetailAdminController.java:[lines 45-52]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.MovieDetailAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file MovieDetailAdminController.java,
+					
+						lines 64
+						    to 72<br/>In class com.lin.controller.admin.MovieDetailAdminController<br/>In method com.lin.controller.admin.MovieDetailAdminController.save(MovieDetail, HttpServletRequest)<br/>At MovieDetailAdminController.java:[lines 64-72]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.WebsiteAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file WebsiteAdminController.java,
+					
+						lines 87
+						    to 94<br/>In class com.lin.controller.admin.WebsiteAdminController<br/>In method com.lin.controller.admin.WebsiteAdminController.comboList(String)<br/>At WebsiteAdminController.java:[lines 87-94]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.WebsiteAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file WebsiteAdminController.java,
+					
+						lines 104
+						    to 129<br/>In class com.lin.controller.admin.WebsiteAdminController<br/>In method com.lin.controller.admin.WebsiteAdminController.delete(String, HttpServletRequest)<br/>At WebsiteAdminController.java:[lines 104-129]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.WebsiteAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file WebsiteAdminController.java,
+					
+						lines 52
+						    to 59<br/>In class com.lin.controller.admin.WebsiteAdminController<br/>In method com.lin.controller.admin.WebsiteAdminController.queryMovieDetail(Website, Integer, Integer)<br/>At WebsiteAdminController.java:[lines 52-59]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#SPRING_ENDPOINT">Found Spring endpoint</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>com.lin.controller.admin.WebsiteAdminController is a Spring endpoint (Controller)<br/>
+                  <br/>
+                  <br/>In file WebsiteAdminController.java,
+					
+						lines 71
+						    to 77<br/>In class com.lin.controller.admin.WebsiteAdminController<br/>In method com.lin.controller.admin.WebsiteAdminController.save(Website, HttpServletRequest)<br/>At WebsiteAdminController.java:[lines 71-77]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="Warnings_STYLE">Dodgy code Warnings</a>
+      </h2>
+      <table class="warningtable"
+             width="100%"
+             cellspacing="2"
+             cellpadding="5">
+         <tr class="tableheader">
+            <th align="left">Warning</th>
+            <th align="left">Priority</th>
+            <th align="left">Details</th>
+         </tr>
+         <tr class="tablerow1">
+            <td width="20%" valign="top">
+               <a href="#UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR">Field not initialized in constructor but dereferenced without null check</a>
+            </td>
+            <td width="10%" valign="top">Low</td>
+            <td width="70%">
+               <p>InitSystem.applicationContext not initialized in constructor and dereferenced in com.lin.init.InitSystem.loadData(ServletContext)<br/>
+                  <br/>
+                  <br/>In file InitSystem.java InitSystem.java,
+					
+						line 45 45<br/>In class com.lin.init.InitSystem<br/>Field com.lin.init.InitSystem.applicationContext<br/>In method com.lin.init.InitSystem.loadData(ServletContext)<br/>At InitSystem.java:[line 45]<br/>At InitSystem.java:[line 45]</p>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h1>
+         <a name="Details">Warning Types</a>
+      </h1>
+      <h2>
+         <a name="EI_EXPOSE_REP">May expose internal representation by returning reference to mutable object</a>
+      </h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="EI_EXPOSE_REP2">May expose internal representation by incorporating reference to mutable object</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="IIO_INEFFICIENT_LAST_INDEX_OF">Inefficient use of String.lastIndexOf(String)</a>
+      </h2>
+
+<p> This code passes a constant string of length 1 to String.lastIndexOf().
+It is more efficient to use the integer implementations of String.lastIndexOf().
+f. e. call <code>myString.lastIndexOf('.')</code> instead of <code>myString.lastIndexOf(".")</code></p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="HARD_CODE_PASSWORD">Hard coded password</a>
+      </h2>
+            
+<p>
+Passwords should not be kept in the source code. The source code can be widely shared in an enterprise environment, and is
+certainly shared in open source. To be managed safely, passwords and secret keys should be stored in separate configuration files or keystores.
+(Hard coded keys are reported separately by <i>Hard Coded Key</i> pattern)
+</p>
+<p>
+<p><b>Vulnerable Code:</b><br/>
+
+<pre>private String SECRET_PASSWORD = "letMeIn!";
+
+Properties props = new Properties();
+props.put(Context.SECURITY_CREDENTIALS, "p@ssw0rd");</pre>
+</p>
+<br/>
+<p>
+<b>References</b><br/>
+<a href="https://cwe.mitre.org/data/definitions/259.html">CWE-259: Use of Hard-coded Password</a>
+</p>
+
+        <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="PATH_TRAVERSAL_IN">Potential Path Traversal (file read)</a>
+      </h2>
+            
+<p>A file is opened to read its content. The filename comes from an <b>input</b> parameter.
+If an unfiltered parameter is passed to this file API, files from an arbitrary filesystem location could be read.</p>
+<p>This rule identifies <b>potential</b> path traversal vulnerabilities. In many cases, the constructed file path cannot be controlled
+by the user. If that is the case, the reported instance is a false positive.</p>
+<br/>
+
+<p>
+    <b>Vulnerable Code:</b><br/>
+<pre>@GET
+@Path("/images/{image}")
+@Produces("images/*")
+public Response getImage(@javax.ws.rs.PathParam("image") String image) {
+    File file = new File("resources/images/", image); //Weak point
+
+    if (!file.exists()) {
+        return Response.status(Status.NOT_FOUND).build();
+    }
+
+    return Response.ok().entity(new FileInputStream(file)).build();
+}</pre>
+</p>
+<br/>
+
+<p>
+    <b>Solution:</b><br/>
+<pre>import org.apache.commons.io.FilenameUtils;
+
+@GET
+@Path("/images/{image}")
+@Produces("images/*")
+public Response getImage(@javax.ws.rs.PathParam("image") String image) {
+    File file = new File("resources/images/", FilenameUtils.getName(image)); //Fix
+
+    if (!file.exists()) {
+        return Response.status(Status.NOT_FOUND).build();
+    }
+
+    return Response.ok().entity(new FileInputStream(file)).build();
+}</pre>
+</p>
+<br/>
+<p>
+<b>References</b><br/>
+<a href="http://projects.webappsec.org/w/page/13246952/Path%20Traversal">WASC: Path Traversal</a><br/>
+<a href="https://www.owasp.org/index.php/Path_Traversal">OWASP: Path Traversal</a><br/>
+<a href="https://capec.mitre.org/data/definitions/126.html">CAPEC-126: Path Traversal</a><br/>
+<a href="https://cwe.mitre.org/data/definitions/22.html">CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')</a>
+</p>
+
+        <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="SPRING_ENDPOINT">Found Spring endpoint</a>
+      </h2>
+            
+<p>This class is a Spring Controller. All methods annotated with <code>RequestMapping</code> (as well as its shortcut annotations <code>GetMapping</code>, <code>PostMapping</code>, <code>PutMapping</code>, <code>DeleteMapping</code>, and <code>PatchMapping</code>) are reachable remotely.
+This class should be analyzed to make sure that remotely exposed methods are safe to expose to potential attackers.</p>
+
+        <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="SPRING_CSRF_PROTECTION_DISABLED">Spring CSRF protection disabled</a>
+      </h2>
+            
+<p>Disabling Spring Security's CSRF protection is unsafe for standard web applications.</p>
+<p>A valid use case for disabling this protection would be a service exposing state-changing operations
+that is guaranteed to be used only by non-browser clients.</p>
+<p>
+    <b>Insecure configuration:</b><br/>
+<pre>@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+    }
+}</pre>
+</p>
+<p>
+<b>References</b><br/>
+<a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html#when-to-use-csrf-protection">Spring Security Official Documentation: When to use CSRF protection</a><br/>
+<a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29">OWASP: Cross-Site Request Forgery</a><br/>
+<a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet">OWASP: CSRF Prevention Cheat Sheet</a><br/>
+<a href="https://cwe.mitre.org/data/definitions/352.html">CWE-352: Cross-Site Request Forgery (CSRF)</a>
+</p>
+
+        <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING">Spring CSRF unrestricted RequestMapping</a>
+      </h2>
+            
+<p>Methods annotated with <code>RequestMapping</code> are by default mapped to all the HTTP request methods.
+However, Spring Security's CSRF protection is not enabled by default
+for the HTTP request methods <code>GET</code>, <code>HEAD</code>, <code>TRACE</code>, and <code>OPTIONS</code>
+(as this could cause the tokens to be leaked).
+Therefore, state-changing methods annotated with <code>RequestMapping</code> and not narrowing the mapping
+to the HTTP request methods <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, or <code>PATCH</code>
+are vulnerable to CSRF attacks.</p>
+<p>
+    <b>Vulnerable Code:</b><br/>
+<pre>@Controller
+public class UnsafeController {
+
+    @RequestMapping("/path")
+    public void writeData() {
+        // State-changing operations performed within this method.
+    }
+}</pre>
+</p>
+<p>
+    <b>Solution (Spring Framework 4.3 and later):</b><br/>
+<pre>@Controller
+public class SafeController {
+
+    /**
+     * For methods without side-effects use @GetMapping.
+     */
+    @GetMapping("/path")
+    public String readData() {
+        // No state-changing operations performed within this method.
+        return "";
+    }
+
+    /**
+     * For state-changing methods use either @PostMapping, @PutMapping, @DeleteMapping, or @PatchMapping.
+     */
+    @PostMapping("/path")
+    public void writeData() {
+        // State-changing operations performed within this method.
+    }
+}</pre>
+</p>
+<p>
+    <b>Solution (Before Spring Framework 4.3):</b><br/>
+<pre>@Controller
+public class SafeController {
+
+    /**
+     * For methods without side-effects use either
+     * RequestMethod.GET, RequestMethod.HEAD, RequestMethod.TRACE, or RequestMethod.OPTIONS.
+     */
+    @RequestMapping(value = "/path", method = RequestMethod.GET)
+    public String readData() {
+        // No state-changing operations performed within this method.
+        return "";
+    }
+
+    /**
+     * For state-changing methods use either
+     * RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, or RequestMethod.PATCH.
+     */
+    @RequestMapping(value = "/path", method = RequestMethod.POST)
+    public void writeData() {
+        // State-changing operations performed within this method.
+    }
+}</pre>
+</p>
+<p>
+<b>References</b><br/>
+<a href="https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html#csrf-use-proper-verbs">Spring Security Official Documentation: Use proper HTTP verbs (CSRF protection)</a><br/>
+<a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29">OWASP: Cross-Site Request Forgery</a><br/>
+<a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet">OWASP: CSRF Prevention Cheat Sheet</a><br/>
+<a href="https://cwe.mitre.org/data/definitions/352.html">CWE-352: Cross-Site Request Forgery (CSRF)</a>
+</p>
+
+        <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="SE_NO_SERIALVERSIONID">Class is Serializable, but doesn't define serialVersionUID</a>
+      </h2>
+
+  <p> This class implements the <code>Serializable</code> interface, but does
+  not define a <code>serialVersionUID</code> field.&nbsp;
+  A change as simple as adding a reference to a .class object
+    will add synthetic fields to the class,
+   which will unfortunately change the implicit
+   serialVersionUID (e.g., adding a reference to <code>String.class</code>
+   will generate a static field <code>class$java$lang$String</code>).
+   Also, different source code to bytecode compilers may use different
+   naming conventions for synthetic variables generated for
+   references to class objects or inner classes.
+   To ensure interoperability of Serializable across versions,
+   consider adding an explicit serialVersionUID.</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>
+         <a name="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR">Field not initialized in constructor but dereferenced without null check</a>
+      </h2>
+
+  <p> This field is never initialized within any constructor, and is therefore could be null after
+the object is constructed. Elsewhere, it is loaded and dereferenced without a null check.
+This could be a either an error or a questionable design, since
+it means a null pointer exception will be generated if that field is dereferenced
+before being initialized.
+</p>
+
+    <p>
+         <br/>
+         <br/>
+      </p>
+   </body>
+</html>

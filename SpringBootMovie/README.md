@@ -13,7 +13,7 @@ In this document, both the CVEs will be considered and analyzed. Moreover, a sim
 
 ## Content
 1. [This repository](#this-repository)
-2. [TL;DR](#tldr)
+2. [Summary](#summary)
 3. [The CVEs](#the-cves)
     1. [CVE-2022-28588](#cve-2022-28588)
         1. [Details](#details) 
@@ -25,7 +25,10 @@ In this document, both the CVEs will be considered and analyzed. Moreover, a sim
         3. [Potential Mitigations](#potential-mitigations-1)
 4. [The vulnerable application](#the-vulnerable-application)
     1. [Installing original application](#installing-the-original-application)
-    2. [Details of the reproduced application](#details-of-the-reproduced-application)
+    2. [Static analysis of the original application](#static-analysis-of-the-original-application)
+        1. [SpotBugs result](#spotbugs-result)
+        2. [SonarQube result](#sonarqube-result)
+    3. [Details of the reproduced application](#details-of-the-reproduced-application)
 5. [Run the application](#run-the-application)
 6. [Run the exploit](#run-the-exploit)
 
@@ -37,9 +40,10 @@ This repository contains the material related to **CVE-2022-28588** and **CVE-20
 - `VulnerableApplication`: it contains the source code of the vulnerable application. The application represents a simplified vulnerable version extracted from the [`SpringBootMovie`](https://github.com/lkmc2/SpringBootMovie) application. Please refer to the [The vulnerable application](#the-vulnerable-application) section for more information.
 - `Attacker`: it contains the python scripts used as Proof of Concept to exploit the CVE vulnerabilities. More details can be found in the section: [Run the exploit](#run-the-exploit).
 - `Images`: it contains the images used in this file.
+- `Results`: it contains the results of the security vulnerability assessment performed with SpotBugs and SonarQube. More details can be found in the section: [Static analysis of the original application](#static-analysis-of-the-original-application).
 
 
-## TL;DR
+## Summary
 We are dealing with two vulnerabilities found in the `MovieAdminController.java` class, which exposes an endpoint to upload the information related to a new movie. In particular:
 - a [stored XSS](https://cwe.mitre.org/data/definitions/79.html): the controller does not properly sanitize the user input that will be stored as is in the MySQL database and later rendered by the Thymeleaf engine in the `.html` template containing, now, the malicious code injected;
 - an [unrestricted upload of file](https://cwe.mitre.org/data/definitions/434.html): the controller does not properly check the uploaded image file extensions, resulting in an arbitrary file upload. 
@@ -417,10 +421,80 @@ spring.redis.password=<defined_password>
 8. Start the Redis server by running `redis-server` in a shell.
 9. It is now possible to visit `http://localhost:8080/admin` in the browser by enter the username `admin` and the password `123456`.
 
+### Static analysis of the original application
+In this section, we will focus on the **static analysis** of the original application, specifically using **SpotBugs** and **SonarQube** to assess security vulnerabilities. Static analysis is a software testing technique that involves analyzing the code without actually executing it. By doing so, we can identify potential security issues early in the development process, before the application is deployed. In the following sections, we will discuss the results of the security assessment using SpotBugs and SonarQube and provide recommendations on how to address the identified vulnerabilities.
+
+> **NB**: free Community Edition of SonarQube has been used to perform the analysis. In this version of the software, a lot of features are missing and therefore the result is missing the specific CVEs addressed in this report.
+
+#### SpotBugs result
+The [FindSecBugs](https://github.com/find-sec-bugs/find-sec-bugs/wiki/IntelliJ-Tutorial) plugin has been used to scan the original project. The configuration of the performances of SpotBugs is the following: 
+- *Analysis effort*: `maximal`
+- *Minimum confidence*: `low`
+
+> **NB**: a complete and detailed report of the analysis performed by SpotBugs can be found in `Results` as [`spotbugs.html`](./Results/spotbugs.html).
+
+In particular, the following results are of great interest for this report:
+
+- **Hard coded password**: the admin password is hard coded in the `WebSecurityConfig` (`com.lin.config`) class at line 47: 
+    ```java
+    .password("123456")
+    ```
+    This leads to the effectiveness of the CVEs, which require admin authentication in order to be exploited. 
+    
+    From SpotBugs: 
+
+    > Passwords should not be kept in the source code. The source code can be widely shared in an enterprise environment, and is certainly shared in open source. To be managed safely, passwords and secret keys should be stored in separate configuration files or keystores. (Hard coded keys are reported separately by Hard Coded Key pattern).
+
+- **Potential path traversal**: this is a false positive detected by SpotBugs in the considered vulnerable endpoint `/admin/movie/save`. In particular, SpotBugs suggest that `FileUtils.copyInputStreamToFile(file.getInputStream(), new File(imageFilePath + newFileName));` performs the opening of a file whose name derives from the input parameter. However, as previously stated, the new filename of the file is generated by the `DateUtils.getCurrentDateStr()` and only the suffix name of the file is used. 
+
+    From SpotBugs:
+
+    > A file is opened to read its content. The filename comes from an input parameter. If an unfiltered parameter is passed to this file API, files from an arbitrary filesystem location could be read.
+    This rule identifies potential path traversal vulnerabilities. In many cases, the constructed file path cannot be controlled by the user. If that is the case, the reported instance is a false positive.
+
+- **MovieAdminController is a Spring endpoint (Controller)**: SpotBugs detects that this class is a controller that exposes endpoints reachable remotely. All the methods annotated with `@RequestMapping` should be checked. Although it does not detects possible stored XSS injection coming from the non-sanitized input, it detects that this endpoint may be exploited by malicious users if not properly audited and configured. 
+
+    From SpotBugs: 
+
+    > This class is a Spring Controller. All methods annotated with RequestMapping (as well as its shortcut annotations GetMapping, PostMapping, PutMapping, DeleteMapping, and PatchMapping) are reachable remotely. This class should be analyzed to make sure that remotely exposed methods are safe to expose to potential attackers.
+
+
+#### SonarQube result
+
+On the other hand, SonarQube Free Community Edition was not capable of detecting the specific CVEs addressed in this report. The following is the result of SonarQube analysis:
+
+![sonarqube](./Images/sonarqube.png)
+
+In particular, the analysis reports:
+- no bugs found;
+- no vulnerabilities found;
+- 29 code smells;
+- 3 security hot-spot.
+
+The following are the code smells related to the Controller Class considered in the CVEs, although they do not refer to any specific problems:
+
+![codesmells](./Images/codesmells.png)
+
+The security hot-spot refers to possible **Cross-Site Request Forgery** (**CSRF**) in the considered controller:
+
+
+<center>
+    <img src="./Images/hotspot.png" alt="example" width="30%"/>
+</center>
+
+In particular, from SonarQube:
+
+> An HTTP method is **safe** when used to perform a read-only operation, such as retrieving information. In contrast, an **unsafe HTTP method** is used to change the state of an application, for instance to update a user’s profile on a web application. Common safe HTTP methods are `GET`, `HEAD`, or `OPTIONS`. Common unsafe HTTP methods are `POST`, `PUT` and `DELETE`. Allowing both safe and unsafe HTTP methods to perform a specific operation on a web application could impact its security, for example CSRF protections are most of the time only protecting operations performed by unsafe HTTP methods.
+
+This happens because the `@RequestMapping()` annotation in the specific endpoint handler does not specify which verb the user will be required to use, allowing every possible requests to the specific endpoint. A possible mitigation to this issue could be to use a more specific annotation, such as: `@PostMapping()` or `@GetMapping()`.
+
+However, all the endpoints that raised a security hot-spot does not contain any of the vulnerabilities contained in the analyzed CVEs.
+
+
 ### Details of the reproduced application
 The new web application can be found in the [vulnerableApplication](./vulnerableApplication/) directory. 
 
-The technology stack is the following (please note that the stack is slightly different from the original one in order to simplify the set up of the application):
+The technology stack is the following (please note that the stack is slightly different from the original one in order to simplify the set up of the application itself):
 - **Spring Boot** is the framework layer used to automatically configures application components based on classpath and other settings. 
 - **H2** is the in-memory database used. While the original application requires to set up a MySQL server and a Redis server, all the database information are now stored in a in-memory H2 database. 
 - **Spring Data JPA** is the framework used to interact with the H2 database.
